@@ -65,7 +65,7 @@ acronym = ""
 
 for x in range(0, len(phrase)):
 	if x == 0 or phrase[x-1] == " " or phrase[x-1] == "-":
-		acronym+=phrase[x]
+		acronym += phrase[x]
 return acronym
 
 '''
@@ -201,7 +201,9 @@ return: bool
 def pangram(sentence):
 	setCheck = set()
 	for(x in sentence):
-		setCheck.add(x)
+		if (x.isalpha()) {
+			setCheck.add(x.lower())
+		}	
 	if(len(setCheck) != 26):
 		return false
 	return true
@@ -218,9 +220,13 @@ return: list
 '''
 def sort(numbers):
 	size = len(numbers)
-
+	
 	while (size > 1):
-		
+		maxNum = findMax(numbers, size)
+		size -= 1
+		Collections.swap(numbers, maxNum, size)
+	
+	return numbers	
 
 
 def findMax(numbers, size):
@@ -262,7 +268,25 @@ param: int, str
 return: str
 '''
 def rotate(key, string):
+	outputStr = ""
+	upperC = False
 
+	for (x in string):
+		asciival = " "
+		if (x.isalpha()) {
+			if (x.upper() == x):
+				upperC = true
+		
+				asciiNum = ord(x.lower()) - 97
+				asciival = chr((asciiNum + key) % 26 + 97)
+			if (upperC = true):
+				asciiVal = asciiVal.upper()
+			upperC = false
+
+		}
+		outputStr += asciival
+ 		
+	return outputStr		
 '''
 10. Take 10 numbers as input from the user and store all the even numbers in a file called even.txt and
 the odd numbers in a file called odd.txt.
@@ -271,6 +295,22 @@ param: none, from the keyboard
 return: nothing
 '''
 def evenAndOdds():
+	open('odd.txt','w').close()
+	open('even.txt','w').close()
+	
+	outputOdds = open('odd.txt','a')
+	outputEvens = open('even.txt','a')
+
+	for (x in range(10)):
+		print("what is your " + (x+1) + " number?")
+		numIn = eval(input())
+				
+		if (numIn % 2 == 0) {
+			outputEvens.write(numIn)	
+		} else {
+			outputOdds.write(numIn)
+		} 
+
 ##open even.txt and odd.txt
 ##iterate through numbers, write into either file
 if __name__ == "__main__"
