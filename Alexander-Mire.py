@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-
+import string
+import java.util.Collections
 '''
 Revature is building a new API! This API contains functions for validating data, 
 solving problems, and encoding data. 
@@ -50,7 +51,7 @@ param: str
 return: str
 '''
 def reverse(string):
-
+	string = string[::-1]	
 '''
 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
 Acronyms)! Help generate some jargon by writing a program that converts a
@@ -60,6 +61,12 @@ param: str
 return: str
 '''
 def acronym(phrase):
+acronym = ""
+
+for x in range(0, len(phrase)):
+	if x == 0 or phrase[x-1] == " " or phrase[x-1] == "-":
+		acronym+=phrase[x]
+return acronym
 
 '''
 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -73,7 +80,22 @@ param: float, float, float
 return: str -> 'equilateral', 'isoceles', 'scalene'
 '''
 def whichTriangle(sideOne, sideTwo, sideThree):
+	def isEquilateral():
+		if sideOne == sideTwo and sideTwo == sideThree:
+			return true
 
+		return false
+	def isIsosceles():
+		if sideOne == sideTwo and sideTwo != sideThree:	
+			return true
+		if sideOne == sideThree and sideOne != sideTwo:
+			return true
+
+		return false
+	def isScalene():
+		if sideOne != sideTwo and sideOne != sideThree and sideTwo != sideThree
+			return true
+		return false
 
 '''
 4. Given a word, compute the scrabble score for that word.
@@ -91,7 +113,19 @@ param: str
 return: int
 '''
 def scrabble(word):
+	alphaMap = dict()
+	alphabets = ['AEIOULNRST','G','BCMP','FHVWY','K','JX','QZ']
+	alphaPts= [1,2,3,4,5,8,10]
+	outputSum = 0	
 
+	for(x in range(7)):
+		for (y in alphabets[x]):
+			alphaMap[y] = alphaPts[x]
+
+	for(x in word):
+		outputSum += alphaMap[x]
+
+	return outputSum
 '''
 5. An Armstrong number is a number that is the sum of its own digits each
 raised to the power of the number of digits.
@@ -108,7 +142,13 @@ param: int
 return: bool
 '''
 def armstrong(number):
+	numStr = str(number)
+	outSum = 0
+	size = len(numStr)
 
+	for x in numStr:
+		outSum += eval(x) ** size
+	return outSum == number
 '''
 6. Compute the prime factors of a given natural number.
 
@@ -119,7 +159,31 @@ Note that 1 is not a prime number.
 param: int
 return: list
 '''
-def primeFactors(number)
+def primeFactors(number):
+## create list
+## get absolute value of number
+## short circuit input of 1 or 0
+## check if divisible by 2
+## iterate from 3, while iterating number is less than or equal to number
+## use /= 
+	number = abs(number)
+	if (number == 0 or number == 1):
+		return []
+
+	primeList = list()
+	iterator = 3	
+
+	if (number / 2 == number // 2):
+		while (number / 2 == number // 2):
+			primeList.append(2)
+			number /= 2
+
+	while (iterator <= number):
+		while (number / iterator == number // 2):
+			primeList.append(iterator)
+			number /= iterator
+		iterator += 2
+	return primeList
 
 '''
 7. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
@@ -135,7 +199,12 @@ param: str
 return: bool
 '''
 def pangram(sentence):
-
+	setCheck = set()
+	for(x in sentence):
+		setCheck.add(x)
+	if(len(setCheck) != 26):
+		return false
+	return true
 '''
 8. Sort list of integers.
 f([2,4,5,1,3,1]) = [1,1,2,3,4,5]
@@ -148,7 +217,21 @@ param: list
 return: list
 '''
 def sort(numbers):
+	size = len(numbers)
 
+	while (size > 1):
+		
+
+
+def findMax(numbers, size):
+	maxNum = numbers[0]
+	maxInt = 0
+
+	for(x in range(size)):
+		if (numbers[x] > maxNum):
+			maxNum = numbers[x]
+			maxInt = x
+	return maxInt
 '''
 9. Create an implementation of the rotational cipher, also sometimes called
 the Caesar cipher.
@@ -188,6 +271,7 @@ param: none, from the keyboard
 return: nothing
 '''
 def evenAndOdds():
-
+##open even.txt and odd.txt
+##iterate through numbers, write into either file
 if __name__ == "__main__"
     main()
