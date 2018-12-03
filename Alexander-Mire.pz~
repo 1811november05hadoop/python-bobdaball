@@ -50,8 +50,8 @@ def main():
 	print(sort([1,1,2,3,4,5]))
 	print(rotate(13, "Gur dhvpx oebja sbk whzcf bire gur ynml qbt."))
 	print(evenAndOdds())
-	
-
+	print(open(even.txt))
+	print(open(odd.txt))
 '''
 1. Reverse a String. Example: reverse("example"); -> "elpmaxe"
 
