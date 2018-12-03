@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import string
-import java.util.Collections
+import collections
 '''
 Revature is building a new API! This API contains functions for validating data, 
 solving problems, and encoding data. 
@@ -39,6 +39,15 @@ Happy Scripting!
 Use the main function for testing purposes and to show me results for all functions.
 '''
 def main():
+	reverseStr = reverse("hai")
+	print("function output: " + reverseStr + " expected output: iah")
+	print(acronym("Hello World!") == "HW")
+	print(scrabble("cabbage"))	
+	print(armstrong(153) == True)
+	print(primeFactors(56))
+	print(pangram("The quick lazy fox jumps over brown dog"))
+	print([2,4,5,1,3,1])
+	print(sort([1,1,2,3,4,5]))
 
 '''
 1. Reverse a String. Example: reverse("example"); -> "elpmaxe"
@@ -51,7 +60,8 @@ param: str
 return: str
 '''
 def reverse(string):
-	string = string[::-1]	
+	string = string[::-1]
+	return string	
 '''
 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
 Acronyms)! Help generate some jargon by writing a program that converts a
@@ -61,12 +71,12 @@ param: str
 return: str
 '''
 def acronym(phrase):
-acronym = ""
+	acronym = ""
 
-for x in range(0, len(phrase)):
-	if x == 0 or phrase[x-1] == " " or phrase[x-1] == "-":
-		acronym += phrase[x]
-return acronym
+	for x in range(0, len(phrase)):
+		if x == 0 or phrase[x-1] == " " or phrase[x-1] == "-":
+			acronym += phrase[x]
+	return acronym
 
 '''
 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -82,20 +92,20 @@ return: str -> 'equilateral', 'isoceles', 'scalene'
 def whichTriangle(sideOne, sideTwo, sideThree):
 	def isEquilateral():
 		if sideOne == sideTwo and sideTwo == sideThree:
-			return true
+			return True
 
-		return false
+		return False
 	def isIsosceles():
 		if sideOne == sideTwo and sideTwo != sideThree:	
-			return true
+			return True
 		if sideOne == sideThree and sideOne != sideTwo:
-			return true
+			return True
 
-		return false
+		return False
 	def isScalene():
-		if sideOne != sideTwo and sideOne != sideThree and sideTwo != sideThree
-			return true
-		return false
+		if sideOne != sideTwo and sideOne != sideThree and sideTwo != sideThree:
+			return True
+		return False
 
 '''
 4. Given a word, compute the scrabble score for that word.
@@ -118,12 +128,11 @@ def scrabble(word):
 	alphaPts= [1,2,3,4,5,8,10]
 	outputSum = 0	
 
-	for(x in range(7)):
-		for (y in alphabets[x]):
+	for x in range(0,7):
+		for y in alphabets[x]:
 			alphaMap[y] = alphaPts[x]
-
-	for(x in word):
-		outputSum += alphaMap[x]
+	for x in word:
+		outputSum += alphaMap[x.upper()]
 
 	return outputSum
 '''
@@ -173,13 +182,13 @@ def primeFactors(number):
 	primeList = list()
 	iterator = 3	
 
-	if (number / 2 == number // 2):
-		while (number / 2 == number // 2):
+	if (number % 2 == 0):
+		while (number % 2 == 0):
 			primeList.append(2)
 			number /= 2
 
 	while (iterator <= number):
-		while (number / iterator == number // 2):
+		while (number % iterator == 0):
 			primeList.append(iterator)
 			number /= iterator
 		iterator += 2
@@ -200,13 +209,12 @@ return: bool
 '''
 def pangram(sentence):
 	setCheck = set()
-	for(x in sentence):
-		if (x.isalpha()) {
-			setCheck.add(x.lower())
-		}	
+	for x in sentence:
+		if (x.isalpha()): 
+			setCheck.add(x.lower())	
 	if(len(setCheck) != 26):
-		return false
-	return true
+		return False
+	return True
 '''
 8. Sort list of integers.
 f([2,4,5,1,3,1]) = [1,1,2,3,4,5]
@@ -224,7 +232,7 @@ def sort(numbers):
 	while (size > 1):
 		maxNum = findMax(numbers, size)
 		size -= 1
-		Collections.swap(numbers, maxNum, size)
+		numbers[maxNum], numbers[size] = numbers[size], numbers[maxNum]
 	
 	return numbers	
 
@@ -233,7 +241,7 @@ def findMax(numbers, size):
 	maxNum = numbers[0]
 	maxInt = 0
 
-	for(x in range(size)):
+	for x in range(size):
 		if (numbers[x] > maxNum):
 			maxNum = numbers[x]
 			maxInt = x
@@ -271,19 +279,18 @@ def rotate(key, string):
 	outputStr = ""
 	upperC = False
 
-	for (x in string):
+	for x in string:
 		asciival = " "
-		if (x.isalpha()) {
+		if (x.isalpha()): 
 			if (x.upper() == x):
-				upperC = true
+				upperC = True
 		
 				asciiNum = ord(x.lower()) - 97
 				asciival = chr((asciiNum + key) % 26 + 97)
-			if (upperC = true):
+			if (upperC == True):
 				asciiVal = asciiVal.upper()
-			upperC = false
+			upperC = False
 
-		}
 		outputStr += asciival
  		
 	return outputStr		
@@ -301,17 +308,17 @@ def evenAndOdds():
 	outputOdds = open('odd.txt','a')
 	outputEvens = open('even.txt','a')
 
-	for (x in range(10)):
+	for x in range(10):
 		print("what is your " + (x+1) + " number?")
 		numIn = eval(input())
 				
-		if (numIn % 2 == 0) {
+		if (numIn % 2 == 0): 
 			outputEvens.write(numIn)	
-		} else {
+		else:
 			outputOdds.write(numIn)
-		} 
+		
 
 ##open even.txt and odd.txt
 ##iterate through numbers, write into either file
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()
